@@ -1,0 +1,264 @@
+/* "What you get / Our main focus" section. Import after App.css. */
+@property --a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.why {
+  --gold: #f5b301;
+  position: relative;
+  overflow: hidden;
+  padding: 12vh 5vw;
+  color: #fff;
+  background: linear-gradient(
+    120deg,
+    #0b1030,
+    #1d4a4f 50%,
+    #4fa383,
+    #1d4a4f,
+    #0b1030
+  );
+  background-size: 300% 300%;
+  animation: why-bg 24s ease-in-out infinite alternate;
+}
+.why::before {
+  content: "";
+  position: absolute;
+  inset: -320px 0 0 -320px;
+  background: url("../../Assets/pattern-light.svg") 0 0/320px;
+  opacity: 0.07;
+  animation: why-pan 60s linear infinite;
+  pointer-events: none;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  animation: why-float 12s ease-in-out infinite;
+}
+.orb.o1 {
+  width: 340px;
+  height: 340px;
+  left: -80px;
+  top: -60px;
+  background: rgba(245, 179, 1, 0.28);
+}
+.orb.o2 {
+  width: 400px;
+  height: 400px;
+  right: -100px;
+  bottom: -120px;
+  background: rgba(79, 163, 131, 0.55);
+  animation-delay: -5s;
+}
+
+.wgrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.wcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.6);
+}
+.wcard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--a),
+    rgba(255, 255, 255, 0.14) 0 70%,
+    var(--gold) 90%,
+    rgba(255, 255, 255, 0.14)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: why-spin 7s linear infinite;
+}
+.wcard:nth-child(2)::before {
+  animation-direction: reverse;
+}
+.wcard h2 {
+  position: relative;
+  font: 800 clamp(30px, 3.6vw, 46px)/1.1 var(--display);
+  letter-spacing: -0.01em;
+  margin-bottom: 30px;
+  padding-bottom: 16px;
+}
+.wcard h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--gold), #f08a00);
+  transition: width 0.9s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.why.in .wcard h2::after {
+  width: 72px;
+}
+
+.wlist {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+.wlist li {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+  cursor: default;
+}
+.wlist li:hover {
+  transform: translateX(8px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(245, 179, 1, 0.55);
+}
+.chip {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: #3a2600;
+  background: linear-gradient(135deg, #ffe08a, var(--gold));
+  box-shadow: 0 10px 20px -8px rgba(245, 179, 1, 0.7);
+  transition: transform 0.35s ease;
+}
+.wcard:nth-child(2) .chip {
+  color: #04301f;
+  background: linear-gradient(135deg, #b6f0d6, #4fd1a1);
+  box-shadow: 0 10px 20px -8px rgba(79, 209, 161, 0.7);
+}
+.wlist li:hover .chip {
+  transform: rotate(-10deg) scale(1.12);
+}
+.chip svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wtext {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.go {
+  flex: none;
+  width: 20px;
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+.wlist li:hover .go {
+  opacity: 1;
+  transform: none;
+}
+
+/* scroll reveal */
+.why .rv {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--d, 0) * 110ms);
+}
+.why.in .rv {
+  opacity: 1;
+  transform: none;
+}
+.why.in .wlist li.rv:hover {
+  transition-delay: 0s;
+}
+
+@keyframes why-bg {
+  to {
+    background-position: 100% 100%;
+  }
+}
+@keyframes why-pan {
+  to {
+    transform: translate(320px, 320px);
+  }
+}
+@keyframes why-float {
+  50% {
+    transform: translate(40px, -30px) scale(1.12);
+  }
+}
+@keyframes why-spin {
+  to {
+    --a: 360deg;
+  }
+}
+
+@media (max-width: 860px) {
+  .wgrid {
+    grid-template-columns: 1fr;
+  }
+  .wcard {
+    padding: 28px 20px;
+  }
+  .wtext {
+    font-size: 17px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .why,
+  .why::before,
+  .orb,
+  .wcard::before {
+    animation: none;
+  }
+  .why .rv {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

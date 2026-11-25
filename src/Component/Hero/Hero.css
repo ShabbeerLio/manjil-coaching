@@ -1,0 +1,247 @@
+/* Hero banner. Import AFTER App.css so these rules win. The top bar is untouched. */
+.hero {
+  --deep: #06281c;
+  min-height: 100vh;
+  color: var(--deep);
+  background:
+    radial-gradient(
+      50% 50% at 92% 18%,
+      rgba(245, 179, 1, 0.24),
+      transparent 60%
+    ),
+    radial-gradient(45% 50% at 0 100%, rgba(0, 120, 74, 0.16), transparent 60%),
+    linear-gradient(135deg, #fffaf3, #fdf0e1 55%, #eaf4ee);
+}
+.hero::after {
+  display: none;
+}
+.hero .hero-inner {
+  padding: 140px 5vw 80px;
+  gap: 3vw;
+}
+
+.eyebrow {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font: 800 clamp(40px, 3vw, 96px)/1.02 var(--display);
+  letter-spacing: -0.02em;
+  color: var(--deep);
+}
+.hero h1 .accent {
+    font: 800 clamp(40px, 6vw, 96px)/1.02 var(--display);
+  color: var(--ink);
+}
+.hero .lead {
+  max-width: 46ch;
+  margin-top: 26px;
+  color: #4b6a5d;
+  opacity: 1;
+}
+.hero .pills {
+  margin: 22px 0 0;
+}
+.hero .pills li {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid rgba(0, 120, 74, 0.28);
+  backdrop-filter: none;
+}
+.hero .actions {
+  align-items: center;
+  gap: 26px;
+  margin-top: 34px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 30px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 18px 36px -14px rgba(0, 120, 74, 0.75);
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  background: #005f3b;
+}
+.cta svg {
+  width: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s;
+}
+.cta:hover svg {
+  transform: translateX(4px);
+}
+.textlink {
+  font-weight: 700;
+  color: var(--deep);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+/* right side: circular photo with orbit rings */
+.orbit {
+  position: relative;
+  width: min(100%, 560px);
+  aspect-ratio: 1;
+  justify-self: center;
+}
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(240, 138, 0, 0.3);
+}
+.ring.arc {
+  inset: 5%;
+  border: 5px solid transparent;
+  border-top-color: #f08a00;
+  border-bottom-color: #f08a00;
+  animation: spin 30s linear infinite;
+}
+.disc {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(rgba(0, 70, 44, 0.45), rgba(0, 38, 25, 0.8)),
+    var(--bg) center/cover;
+  box-shadow: 0 40px 80px -30px rgba(0, 60, 38, 0.6);
+}
+.disc img {
+  width: 52%;
+  filter: invert(1) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4));
+}
+
+.stat {
+  position: absolute;
+  left: -2%;
+  top: 44%;
+  width: 27%;
+  aspect-ratio: 1;
+  padding: 1%;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 20px 44px -12px rgba(0, 60, 38, 0.35);
+}
+.stat div {
+  height: 100%;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+}
+.stat strong {
+  font: 800 clamp(15px, 2.2vw, 26px)/1.1 var(--display);
+}
+.stat span {
+  font-size: clamp(10px, 1.1vw, 14px);
+  font-weight: 600;
+}
+
+.fab {
+  position: absolute;
+  right: 3%;
+  top: 68%;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 14px 30px -8px rgba(0, 120, 74, 0.8);
+  transition: transform 0.2s;
+}
+.fab:hover {
+  transform: scale(1.08);
+}
+.fab svg {
+  width: 24px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+.spark {
+  position: absolute;
+  fill: var(--gold);
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+.spark.s1 {
+  width: 36px;
+  top: 4%;
+  left: 30%;
+}
+.spark.s2 {
+  width: 24px;
+  bottom: 6%;
+  left: 14%;
+  fill: var(--ink);
+  animation-delay: 1.2s;
+}
+.dot {
+  position: absolute;
+  top: 56%;
+  left: -14%;
+  width: 14px;
+  height: 14px;
+  border: 3px solid #f08a00;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes twinkle {
+  50% {
+    transform: scale(0.65) rotate(20deg);
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero .hero-inner {
+    padding-top: 120px;
+  }
+  .orbit {
+    width: min(100%, 400px);
+  }
+  .stat {
+    left: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ring.arc,
+  .spark {
+    animation: none;
+  }
+}

@@ -1,0 +1,232 @@
+/* About section. Import after App.css and Hero.css (it reuses .eyebrow and .cta from Hero.css). */
+.about {
+  --deep: #06281c;
+  position: relative;
+  padding: 12vh 5vw;
+  color: var(--deep);
+  background:
+    radial-gradient(
+      40% 45% at 22% 55%,
+      rgba(245, 179, 1, 0.16),
+      transparent 70%
+    ),
+    radial-gradient(35% 40% at 100% 0, rgba(0, 120, 74, 0.1), transparent 70%),
+    #fffdf9;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 6vw;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* collage: big circle, small organic blob, white stat circle */
+.collage {
+  position: relative;
+  aspect-ratio: 1 / 1.02;
+}
+.blob {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  place-items: center;
+}
+.blob.big {
+  left: 12%;
+  top: 4%;
+  width: 72%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(rgba(0, 70, 44, 0.55), rgba(0, 38, 25, 0.85)),
+    url("../../Assets/pattern-light.svg");
+  background-size: cover, 260px;
+  box-shadow: 0 40px 80px -36px rgba(0, 60, 38, 0.55);
+  z-index: 2;
+}
+.blob.big.has-photo {
+  background-image: none;
+  background-size: cover;
+}
+.blob.big img {
+  width: 46%;
+  filter: invert(1) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4));
+}
+.blob.small {
+  right: 2%;
+  bottom: 4%;
+  width: 52%;
+  aspect-ratio: 1;
+  border-radius: 58% 42% 52% 48% / 48% 54% 46% 52%;
+  background-color: #fdf0e1;
+  background-image: linear-gradient(135deg, #ffe08a, var(--gold));
+  box-shadow: 0 30px 60px -28px rgba(120, 80, 0, 0.5);
+  z-index: 3;
+}
+.blob.small.has-photo {
+  background-image: none;
+}
+.blob.small::after {
+  content: "";
+  position: absolute;
+  inset: -9px -6px -9px -9px;
+  border: 2px solid #f08a00;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.blob.small span {
+  font: 800 clamp(16px, 2.4vw, 28px)/1.15 var(--display);
+  text-align: center;
+  color: var(--deep);
+}
+
+.round-stat {
+  position: absolute;
+  left: 0;
+  top: 14%;
+  width: 33%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8%;
+  box-shadow: 0 24px 50px -16px rgba(0, 60, 38, 0.3);
+  z-index: 2;
+}
+.round-stat strong {
+  font: 800 clamp(16px, 2.3vw, 28px)/1.1 var(--display);
+  color: var(--ink);
+}
+.round-stat span {
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: clamp(11px, 1.2vw, 15px);
+  line-height: 1.25;
+}
+.arc-ring {
+  position: absolute;
+  left: 20%;
+  bottom: 25%;
+  width: 11%;
+  aspect-ratio: 1;
+  border: 8px solid #f5b98a;
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  z-index: 1;
+}
+
+/* copy */
+.about .eyebrow {
+  margin-bottom: 14px;
+}
+.about h2 {
+  font: 800 clamp(34px, 4vw, 60px)/1.08 var(--display);
+  letter-spacing: -0.02em;
+  margin-bottom: 26px;
+}
+.about-p {
+  color: #4b6a5d;
+  max-width: 56ch;
+}
+.about-p + .about-p {
+  margin-top: 12px;
+}
+.about h3 {
+  font: 700 24px var(--display);
+  margin: 34px 0 18px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 36px;
+}
+.facts strong {
+  display: block;
+  font: 800 clamp(34px, 3vw, 52px)/1.1 var(--display);
+  color: #d96f00;
+}
+.facts p {
+  margin-top: 6px;
+  color: #4b6a5d;
+}
+
+@media (max-width: 860px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .collage {
+    max-width: 440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .facts {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* animated yellow blob: morphing shape, floating, shimmering fill, orbiting outline */
+.blob.small {
+  background-size: 220% 220%;
+  animation:
+    blob-morph 10s ease-in-out infinite alternate,
+    blob-float 6s ease-in-out infinite,
+    blob-shimmer 8s ease-in-out infinite;
+}
+.blob.small::after {
+  animation: blob-orbit 16s linear infinite;
+}
+.round-stat {
+  animation: blob-float 7s ease-in-out -2s infinite;
+}
+
+@keyframes blob-morph {
+  0% {
+    border-radius: 58% 42% 52% 48% / 48% 54% 46% 52%;
+  }
+  33% {
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+  }
+  66% {
+    border-radius: 52% 48% 60% 40% / 42% 58% 42% 58%;
+  }
+  100% {
+    border-radius: 60% 40% 48% 52% / 55% 45% 58% 42%;
+  }
+}
+@keyframes blob-float {
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes blob-shimmer {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+@keyframes blob-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob.small,
+  .blob.small::after,
+  .round-stat {
+    animation: none;
+  }
+}
